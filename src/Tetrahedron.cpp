@@ -9,8 +9,8 @@ Tetrahedron::Tetrahedron()
 
 void Tetrahedron::init() {
   glEnable(GL_BLEND);
-  shaderProgram.init("../resources/shaders/basic.vs",
-                     "../resources/shaders/basic.fs");
+  shaderProgram.init("../../resources/shaders/basic.vs",
+                     "../../resources/shaders/basic.fs");
 
   glGenBuffers(1, &vbo_positions);
   glBindBuffer(GL_ARRAY_BUFFER, vbo_positions);

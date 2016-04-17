@@ -14,8 +14,8 @@ MinecraftCube::MinecraftCube() : vbo_indices(0), vbo_pos(0), rotation(0.0f,0.0f,
 
 void MinecraftCube::init()
 {
-    shaderProgram.init("../resources/shaders/minecraft.vs","../resources/shaders/minecraft.fs");
-    texture.init("../resources/textures/minecraft.tga", GL_TEXTURE_CUBE_MAP);
+    shaderProgram.init("../../resources/shaders/minecraft.vs","../../resources/shaders/minecraft.fs");
+    texture.init("../../resources/textures/minecraft.tga", GL_TEXTURE_CUBE_MAP);
 
     glGenBuffers(1, &vbo_pos);
     glBindBuffer(GL_ARRAY_BUFFER, vbo_pos);
