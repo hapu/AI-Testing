@@ -54,17 +54,23 @@ void Scene::init()
 
 void Scene::update(float dt)
 {
+	glm::vec4 mov;
 	glm::vec3 last_pos = tetra.position;
     //updateCamera(dt);
 	float speed = 5.0;
 	if (InputManager::keyboard.up)
-		tetra.position.z -= speed * dt;
+		mov.z -= speed * dt;
 	if (InputManager::keyboard.down)
-		tetra.position.z += speed * dt;
+		mov.z += speed * dt;
 	if (InputManager::keyboard.right)
-		tetra.position.x += speed * dt;
+		mov.x += speed * dt;
 	if (InputManager::keyboard.left)
-		tetra.position.x -= speed * dt;
+		mov.x -= speed * dt;
+
+	mov = glm::rotate(camera.rotation.y, glm::vec3(0.0f, 1.0f, 0.0f)) * mov;
+
+	tetra.position.z += mov.z;
+	tetra.position.x += mov.x;
 
 	int x = tetra.position.x + 0.5;
 	int y = tetra.position.z + 0.5;
