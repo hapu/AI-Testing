@@ -2,6 +2,10 @@
 cmake_minimum_required ( VERSION 2.5 )
 project (3DBasicFramework)
 
+if(!WIN32)
+SET(EXECUTABLE_OUTPUT_PATH ${PROJECT_BINARY_DIR}/Debug)
+endif()
+
 if(COMMAND cmake_policy)
     cmake_policy(SET CMP0003 NEW)
 endif(COMMAND cmake_policy)
@@ -19,12 +23,12 @@ add_executable ( 3DApplication main.cpp
 if(WIN32)
 find_library( SDL2MAIN_PATH
               NAMES          SDL2main
-              PATHS          "$ENV{CC_COMMON_LIBS}/SDL/VS2012/"
+              PATHS          "$ENV{CC_COMMON_LIBS}/SDL/VS2015/"
               PATH_SUFFIXES  "/lib/x86" )
 
 find_library( SDL2_PATH
               NAMES          SDL2
-              PATHS          "$ENV{CC_COMMON_LIBS}/SDL/VS2012/"
+              PATHS          "$ENV{CC_COMMON_LIBS}/SDL/VS2015/"
               PATH_SUFFIXES  "/lib/x86" )
 
 find_library (GLEW_PATH
@@ -40,7 +44,7 @@ endif()
 
 if (WIN32)
 include_directories ( "${PROJECT_SOURCE_DIR}"
-                      "$ENV{CC_COMMON_LIBS}/SDL/VS2012/include"
+                      "$ENV{CC_COMMON_LIBS}/SDL/VS2015/include"
                       "$ENV{CC_COMMON_LIBS}/glew/VS2012/include"
                       "$ENV{CC_COMMON_LIBS}/glm" )
 
