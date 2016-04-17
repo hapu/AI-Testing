@@ -14,20 +14,20 @@ MinecraftCube::MinecraftCube() : vbo_indices(0), vbo_pos(0), rotation(0.0f,0.0f,
 
 void MinecraftCube::init()
 {
-    shaderProgram.init("../../resources/shaders/minecraft.vs","../../resources/shaders/minecraft.fs");
-    texture.init("../../resources/textures/minecraft.tga", GL_TEXTURE_CUBE_MAP);
+    shaderProgram.init("../resources/shaders/minecraft.vs","../resources/shaders/minecraft.fs");
+    texture.init("../resources/textures/minecraft.tga", GL_TEXTURE_CUBE_MAP);
 
     glGenBuffers(1, &vbo_pos);
     glBindBuffer(GL_ARRAY_BUFFER, vbo_pos);
     float vertices[] = {
-        1.000000,  1.000000,  1.000000,
-        1.000000,  1.000000, -1.000000,
-        1.000000, -1.000000,  1.000000,
-        1.000000, -1.000000, -1.000000,
-       -1.000000,  1.000000, -1.000000,
-       -1.000000,  1.000000,  1.000000,
-       -1.000000, -1.000000,  1.000000,
-       -1.000000, -1.000000, -1.000000,
+        0.500000,  0.500000,  0.500000,
+        0.500000,  0.500000, -0.500000,
+        0.500000, -0.500000,  0.500000,
+        0.500000, -0.500000, -0.500000,
+       -0.500000,  0.500000, -0.500000,
+       -0.500000,  0.500000,  0.500000,
+       -0.500000, -0.500000,  0.500000,
+       -0.500000, -0.500000, -0.500000,
 	};
     glBufferData(GL_ARRAY_BUFFER, sizeof vertices, vertices, GL_STATIC_DRAW);
     glGenBuffers(1, &vbo_indices);
@@ -63,7 +63,7 @@ void MinecraftCube::render(const Camera &cam, char*map, int side)
         for(int y = 0; y < side; y++)
         {
             int index = (y * side) + x;
-            renderCubes(cam, x * 2.0f, y * 2.0f, map[index] );
+            renderCubes(cam, x, y, map[index] );
         }
     }
 
@@ -77,7 +77,7 @@ void MinecraftCube::renderCubes(const Camera& cam, float x, float y, int count)
     {
         position.x = x;
         position.z = y;
-        position.y = (i-1)*2.0f;
+        position.y = (i);
         GLint loc = shaderProgram.getUniformLocation("mvp");
         glm::mat4 mvp = cam.getProjectionMatrix() * cam.calcViewMatrix() * calcModelMatrix();
         glUniformMatrix4fv(loc, 1, GL_FALSE, glm::value_ptr(mvp));

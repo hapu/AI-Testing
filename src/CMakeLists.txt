@@ -13,6 +13,7 @@ endif(COMMAND cmake_policy)
 add_executable ( 3DApplication main.cpp
                                Scene.cpp
                                MinecraftCube.cpp
+                               Tetrahedron.cpp
                                WindowManager/WindowManager.cpp
                                InputManager/InputManager.cpp
                                ShaderProgram/ShaderProgram.cpp

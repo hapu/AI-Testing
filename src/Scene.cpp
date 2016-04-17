@@ -13,6 +13,7 @@ using namespace std;
 
 Camera Scene::camera;
 MinecraftCube Scene::cube;
+Tetrahedron Scene::tetra;
 
 char Scene::map[20*20] = {
     1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
@@ -42,8 +43,10 @@ void Scene::init()
     glewInit();
     glEnable(GL_DEPTH_TEST);
     glClearColor(0.9f, 0.9f, 1.0f, 1.0f);
-    camera.init(38.20, 23.78, 37.13, -0.85, 0.80, 0.00);
+    camera.init(24.0, 15.0, 24.0, -0.785398, 0.785398, 0.00);
     cube.init();
+    tetra.init();
+    tetra.position.y++;
 }
 
 void Scene::update(float dt)
@@ -56,6 +59,7 @@ void Scene::render()
     // It clears the screen
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     cube.render(camera, map, 20);
+    tetra.render(camera);
 }
 
 void Scene::cleanUp() {}
